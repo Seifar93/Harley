@@ -3,140 +3,228 @@
  * PLACEHOLDER COPY — REPLACE BEFORE PUBLISHING
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * starexecutivetravel.co.uk could not be reached from the build environment
- * (blocked by network policy), so the live site's wording, fleet list, prices,
- * and reviews could not be read.
+ * bespokeblinds.co.uk could not be reached from the build environment: the
+ * egress proxy answers 403 to CONNECT for that host, and web search returned
+ * only unrelated blind retailers. The live site's wording, product range,
+ * prices, coverage area, contact details and reviews could therefore not be
+ * read, and NONE of them are transcribed here.
  *
- * Only these details are sourced and believed accurate:
- *   - Company name, the strapline "Luxury Car Hire & Chauffeur Services"
- *   - Freephone number 0800 772 3183
- *   - Base/coverage: Bradford and the wider West Yorkshire area
- *   - Service mix: weddings, self-drive hire, chauffeur-driven executive travel
+ * Everything below is illustrative placeholder text, written to exercise the
+ * layout at realistic lengths. It is a plausible made-to-measure blinds
+ * business, not this one. Before launch, every value in this file needs to be
+ * replaced with the client's approved copy — in particular:
  *
- * EVERYTHING ELSE below — vehicle classes, testimonials, credentials, response
- * times — is illustrative placeholder text written to size the layout. The
- * testimonials in particular are invented and must not ship as real customer
- * reviews. Swap this file for the client's approved copy.
+ *   - `site.phoneDisplay` / `phoneHref` / `email` are INVENTED. The phone
+ *     number uses Ofcom's 0117 496 xxxx drama range, which is permanently
+ *     unallocated, so it cannot ring a real person if it ships by accident.
+ *   - `testimonials` are INVENTED and must not ship as real customer reviews.
+ *   - `stats` (years trading, blinds fitted, guarantee) are INVENTED and are
+ *     the kind of claim that attracts an ASA complaint if wrong.
+ *   - `ranges` are generic product categories every blinds firm sells, not a
+ *     confirmed catalogue.
+ *   - `coverage` names a plausible service region; confirm the real one.
  */
 
 export const site = {
-  name: "Star Executive Travel",
-  strapline: "Luxury Car Hire & Chauffeur Services",
-  phoneDisplay: "0800 772 3183",
-  phoneHref: "tel:08007723183",
-  region: "West Yorkshire",
+  name: "Bespoke Blinds",
+  strapline: "Made-to-Measure Blinds, Shutters & Curtains",
+  /** INVENTED — Ofcom drama range, never allocated to a real subscriber. */
+  phoneDisplay: "0117 496 0142",
+  phoneHref: "tel:01174960142",
+  /** INVENTED. */
+  email: "hello@bespokeblinds.co.uk",
+  emailHref: "mailto:hello@bespokeblinds.co.uk",
+  region: "the South West",
 } as const;
 
 export const nav = [
-  { label: "Services", href: "#services" },
-  { label: "Fleet", href: "#fleet" },
-  { label: "Why us", href: "#why-us" },
+  { label: "Ranges", href: "#ranges" },
+  { label: "Light control", href: "#light" },
+  { label: "How it works", href: "#process" },
   { label: "Coverage", href: "#coverage" },
 ] as const;
 
 export const hero = {
-  eyebrow: "Bradford · West Yorkshire",
-  heading: "Arrive the way you intend to be remembered",
-  body: "Chauffeur-driven executive travel, wedding cars, and self-drive luxury hire across West Yorkshire — booked directly, driven properly.",
-  primaryCta: "Request a quote",
-  secondaryCta: "See the fleet",
-  reassurance: "Freephone booking · Fixed quotes · No account needed",
+  eyebrow: "Measured, made and fitted in the UK",
+  /** Split on whitespace and animated word by word — keep it short. */
+  heading: "Windows dressed to the millimetre",
+  body: "Blinds, plantation shutters and curtains made to your exact openings — not cut down from stock. One person measures, specifies and fits, so nothing is lost between the survey and the screwdriver.",
+  primaryCta: "Book a free measure",
+  secondaryCta: "See the ranges",
+  reassurance: "Free home visit · No-obligation quote · Fitted, not flat-packed",
 } as const;
 
-export const services = [
+/** INVENTED figures — verify or delete before launch. */
+export const stats = [
+  { value: 24, suffix: "", label: "Years fitting windows" },
+  { value: 60000, suffix: "+", label: "Blinds made to measure" },
+  { value: 10, suffix: "yr", label: "Guarantee on every fit" },
+  { value: 98, suffix: "%", label: "Fitted on the first visit" },
+] as const;
+
+/**
+ * Product categories. `tone` drives the CSS gradient standing in for the
+ * product photograph — see RangeCard. Real photography replaces it.
+ */
+export const ranges = [
   {
-    icon: "rings",
-    title: "Weddings",
-    body: "Wedding car specialists. Ribbons, timings, and a second run for the bridal party arranged as standard.",
+    icon: "roller",
+    name: "Roller blinds",
+    body: "The plainest thing you can put on a window, and the hardest to get right. Blackout, dim-out, translucent and screen fabrics, all cut square to the frame.",
+    detail: "Blackout · Screen · Dim-out",
+    tone: "linen",
   },
   {
-    icon: "plane",
-    title: "Airport transfers",
-    body: "Leeds Bradford, Manchester, and the London airports, with flight tracking and meet-and-greet arrivals.",
+    icon: "roman",
+    name: "Roman blinds",
+    body: "Soft folds and a lined body, so a window reads as a furnishing rather than a fitting. Made from our fabric books or from yours.",
+    detail: "Lined · Interlined · Your own fabric",
+    tone: "sand",
   },
   {
-    icon: "briefcase",
-    title: "Corporate & executive",
-    body: "Discreet business travel with account billing, waiting time included, and consistent chauffeurs.",
+    icon: "venetian",
+    name: "Wooden Venetians",
+    body: "Basswood and faux-wood slats in 25, 35 and 50mm, with tapes to match or contrast. The most precise light control of anything on this page.",
+    detail: "25 / 35 / 50mm slats",
+    tone: "walnut",
   },
   {
-    icon: "key",
-    title: "Self-drive hire",
-    body: "Take the keys yourself. Daily and weekend rates on the luxury and performance range.",
+    icon: "shutter",
+    name: "Plantation shutters",
+    body: "A permanent fitting, built to the reveal and hinged to your handles. Full height, tier-on-tier, café style and solid panels.",
+    detail: "Tier-on-tier · Café · Full height",
+    tone: "chalk",
   },
   {
-    icon: "sparkle",
-    title: "Proms & celebrations",
-    body: "Birthdays, anniversaries, and prom nights — photographs at the door, parents kept informed.",
+    icon: "curtain",
+    name: "Curtains & poles",
+    body: "Hand-finished headings, weighted hems, and poles or tracks fitted to carry the weight of them. Measured for stack-back, not just for drop.",
+    detail: "Wave · Pinch pleat · Eyelet",
+    tone: "clay",
   },
   {
-    icon: "route",
-    title: "Long distance",
-    body: "Point-to-point across the UK at a fixed price agreed before you travel. No meters, no surge.",
+    icon: "vertical",
+    name: "Vertical blinds",
+    body: "Still the most practical answer to a wide patio door or a south-facing office. Replaceable louvres, child-safe chains as standard.",
+    detail: "89 / 127mm louvres",
+    tone: "stone",
+  },
+  {
+    icon: "perfectfit",
+    name: "Perfect Fit",
+    body: "Clipped into the beading of a uPVC frame — no drilling, no cords, and the blind travels with the window when it opens.",
+    detail: "No-drill · Tilt & turn safe",
+    tone: "sage",
+  },
+  {
+    icon: "motor",
+    name: "Motorised systems",
+    body: "Battery, mains or solar, on a timer or a scene. Worth it on anything above a stairwell or behind a sink where nobody reaches the cord.",
+    detail: "App · Timer · Voice",
+    tone: "ink",
   },
 ] as const;
 
-/** Vehicle *classes*, not specific stock — confirm the real fleet before launch. */
-export const fleet = [
-  {
-    name: "Executive saloon",
-    seats: "3 passengers",
-    body: "The default for business travel and airport runs. Quiet cabin, full-size luggage capacity.",
-  },
-  {
-    name: "Luxury SUV",
-    seats: "4–6 passengers",
-    body: "Height, space, and presence. The usual choice for groups and longer motorway journeys.",
-  },
-  {
-    name: "Wedding classic",
-    seats: "2–3 passengers",
-    body: "The photographs car. Dressed with ribbon in your colours and held for the full ceremony.",
-  },
-  {
-    name: "Performance range",
-    seats: "2 passengers",
-    body: "Available chauffeur-driven or self-drive for milestone occasions and shoots.",
-  },
-] as const;
+/**
+ * Copy for the interactive light-control demo. The slider tilts a set of
+ * slats through five positions; each position gets a label and a note.
+ */
+export const lightControl = {
+  eyebrow: "Try it",
+  heading: "The whole point is the angle",
+  body: "A blind is not a switch. Slat angle decides how much light enters, where it lands, and whether anyone outside can see in. Drag to tilt.",
+  positions: [
+    {
+      label: "Closed down",
+      note: "Full privacy, near-blackout. Light is turned back out of the room.",
+    },
+    {
+      label: "Ajar",
+      note: "A soft wash along the ceiling. Enough to work by without a lamp.",
+    },
+    {
+      label: "Level",
+      note: "Maximum daylight, minimum glare. The everyday position.",
+    },
+    {
+      label: "Tilted up",
+      note: "Light bounced onto the ceiling. Screens stay readable at midday.",
+    },
+    {
+      label: "Closed up",
+      note: "Privacy from below — the setting for a ground-floor front room.",
+    },
+  ],
+} as const;
+
+export const process = {
+  eyebrow: "How it works",
+  heading: "Four visits, one of them optional",
+  body: "No showroom trip, no measuring yourself, no waiting in for a courier.",
+  steps: [
+    {
+      title: "The call",
+      body: "Ten minutes on the phone to work out roughly what you need and what it is likely to cost. Nobody visits before you have a ballpark.",
+    },
+    {
+      title: "The measure",
+      body: "We come to you with the fabric books and measure every opening ourselves. Recess, face-fit and out-of-square are our problem, not yours.",
+    },
+    {
+      title: "The making",
+      body: "Cut and assembled to your sizes in the UK, typically within ten working days. You get a fitting date before we start, not after.",
+    },
+    {
+      title: "The fit",
+      body: "The person who measured comes back and fits. Packaging leaves with them, and nothing is signed off until it hangs straight.",
+    },
+  ],
+} as const;
 
 export const whyUs = [
   {
+    icon: "ruler",
+    title: "We measure, so we carry the risk",
+    body: "If a blind comes back the wrong size, that is ours to remake. The measurement is never the customer's liability.",
+  },
+  {
     icon: "shield",
-    title: "Licensed and insured",
-    body: "Fully licensed private hire operation with insurance documentation available on request.",
+    title: "Child-safe by default",
+    body: "Every corded product is supplied to BS EN 13120 with breakaway devices and cleats fitted, not left in the bag.",
   },
   {
-    icon: "clock",
-    title: "Early, not on time",
-    body: "Chauffeurs arrive ahead of the booked slot. Waiting time on airport pickups is included.",
+    icon: "leaf",
+    title: "Made in the UK",
+    body: "Cut and assembled here, which is why a remake takes days rather than a container ship.",
   },
   {
-    icon: "tag",
-    title: "Fixed quotes",
-    body: "The price agreed at booking is the price invoiced. No meter, no peak-time multiplier.",
-  },
-  {
-    icon: "phone",
-    title: "A person on the phone",
-    body: "Bookings and changes handled directly on the freephone line, not through an app queue.",
+    icon: "wallet",
+    title: "The quote is the price",
+    body: "Fitting, brackets, waste removal and VAT are in the number we give you on the day.",
   },
 ] as const;
 
 export const coverage = {
-  heading: "Based in Bradford, covering the North",
-  body: "Regular routes across West Yorkshire and beyond. If your journey is not listed, it is almost certainly still covered — call and ask.",
+  eyebrow: "Coverage",
+  heading: "Free measure across the South West",
+  body: "We cover roughly an hour from the workshop. If you are just outside it, call anyway — a full-house job is usually still worth the drive.",
   places: [
-    "Bradford",
-    "Leeds",
-    "Halifax",
-    "Huddersfield",
-    "Wakefield",
-    "Harrogate",
-    "York",
-    "Leeds Bradford Airport",
-    "Manchester Airport",
-    "Sheffield",
+    "Bristol",
+    "Bath",
+    "Clifton",
+    "Chipping Sodbury",
+    "Thornbury",
+    "Portishead",
+    "Clevedon",
+    "Nailsea",
+    "Weston-super-Mare",
+    "Keynsham",
+    "Frome",
+    "Trowbridge",
+    "Chippenham",
+    "Stroud",
+    "Gloucester",
+    "Cheltenham",
   ],
 } as const;
 
@@ -144,42 +232,43 @@ export const coverage = {
 export const testimonials = [
   {
     quote:
-      "Booked for our wedding in September. The car arrived early, dressed exactly as we asked, and the driver waited without a word while photographs overran by half an hour.",
+      "Fourteen windows, not one of them a standard size, and every blind went up first time. The fitter took the old ones away without being asked.",
     name: "Placeholder review",
-    context: "Wedding · Bradford",
+    context: "Full house · Bristol",
   },
   {
     quote:
-      "I use them for Leeds Bradford runs most months. Flights get delayed and it has never once been a problem or an extra charge.",
+      "I had been quoted for shutters twice before and both firms wanted me to measure my own bay. These came out, measured it, and the price never moved.",
     name: "Placeholder review",
-    context: "Airport transfer · Leeds",
+    context: "Plantation shutters · Bath",
   },
   {
     quote:
-      "Quoted on the phone in two minutes, and the invoice matched the quote to the penny. That is rarer than it should be.",
+      "The motorised blinds in the stairwell were the thing I was most nervous about and they are the ones I show people.",
     name: "Placeholder review",
-    context: "Corporate account · Halifax",
+    context: "Motorised · Portishead",
   },
 ] as const;
 
 export const cta = {
-  heading: "Tell us the date and the destination",
-  body: "Quotes are given on the call. Weddings and long-distance journeys are worth booking early — the wedding season fills from spring.",
-  primary: "Call 0800 772 3183",
+  eyebrow: "Next step",
+  heading: "Book the measure. Decide afterwards.",
+  body: "The home visit is free and carries no obligation — you get the sizes, the fabric books and a fixed written quote, whether or not you order.",
+  primary: "Call for a free measure",
   secondary: "Email an enquiry",
 } as const;
 
 export const footerGroups = [
   {
-    title: "Services",
-    links: ["Weddings", "Airport transfers", "Corporate", "Self-drive hire"],
+    title: "Ranges",
+    links: ["Roller blinds", "Roman blinds", "Wooden Venetians", "Shutters"],
   },
   {
     title: "Areas",
-    links: ["Bradford", "Leeds", "Halifax", "Harrogate"],
+    links: ["Bristol", "Bath", "Portishead", "Cheltenham"],
   },
   {
     title: "Company",
-    links: ["About", "Fleet", "Contact", "Terms"],
+    links: ["How it works", "Guarantee", "Child safety", "Contact"],
   },
 ] as const;

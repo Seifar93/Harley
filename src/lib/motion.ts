@@ -8,6 +8,12 @@ import type { Transition, Variants } from "framer-motion";
 /** easeOutExpo-ish: fast start, long soft landing. Reads as "settling". */
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+/**
+ * Slower, heavier curve for the signature slat animations. Real slats have
+ * mass; the standard EASE arrives too abruptly to read as a physical louvre.
+ */
+export const EASE_SLAT: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 /** Entrance duration. Long enough to register, short enough not to block reading. */
 export const DURATION = 0.55;
 
@@ -29,7 +35,7 @@ export const MAX_STAGGER_STEPS = 2;
 export const sectionDelay = (index: number) =>
   Math.min(index, MAX_STAGGER_STEPS) * SECTION_STAGGER;
 
-/** Delay between children inside one section (feature cards, logos, etc.). */
+/** Delay between children inside one section (cards, list chips, etc.). */
 export const CHILD_STAGGER = 0.08;
 
 /** Distance travelled on entry. Small — large offsets feel sluggish. */
@@ -98,3 +104,76 @@ export const viewportConfig = {
   amount: 0.2,
   margin: "0px 0px -10% 0px",
 } as const;
+
+/* ───────────────────────────── slat motion ──────────────────────────────── */
+
+/**
+ * The signature animation: a panel is covered by horizontal louvres that tilt
+ * open, like a Venetian blind being drawn. Used for the hero and for every
+ * range card image.
+ *
+ * `rotateX` on the slat plus `opacity` is deliberately the whole animation —
+ * no height or width is touched, so it stays on the compositor and does not
+ * force layout on a page that has one of these per card.
+ */
+export const SLAT_COUNT = 9;
+
+/** Time between one slat opening and the next. */
+export const SLAT_STAGGER = 0.055;
+
+export const slatContainerVariants: Variants = {
+  hidden: {},
+  visible: (delay: number = 0) => ({
+    transition: { staggerChildren: SLAT_STAGGER, delayChildren: delay },
+  }),
+};
+
+export const slatVariants: Variants = {
+  hidden: { rotateX: 0, opacity: 1 },
+  visible: {
+    // Tilting past 90° is what makes it read as a slat turning rather than a
+    // bar fading: the face rotates away from the viewer and catches no light.
+    rotateX: -94,
+    opacity: 0,
+    transition: { duration: 0.85, ease: EASE_SLAT },
+  },
+};
+
+export const reducedSlatVariants: Variants = {
+  hidden: { opacity: 1 },
+  visible: { opacity: 0, transition: { duration: 0.01 } },
+};
+
+/* ──────────────────────────── heading motion ────────────────────────────── */
+
+/**
+ * Word-by-word headline reveal. Framer has no text splitter, and GSAP's
+ * SplitText is a paid plugin, so headings are split on whitespace in the
+ * component and each word animates as its own span.
+ *
+ * Words, not characters: character splitting on a display serif at hero size
+ * produces 40+ animated nodes and reads as a gimmick. Word-level keeps the
+ * line legible while it moves.
+ */
+export const WORD_STAGGER = 0.045;
+
+export const headingContainerVariants: Variants = {
+  hidden: {},
+  visible: (delay: number = 0) => ({
+    transition: { staggerChildren: WORD_STAGGER, delayChildren: delay },
+  }),
+};
+
+export const wordVariants: Variants = {
+  hidden: { y: "110%", opacity: 0 },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: { duration: 0.75, ease: EASE_SLAT },
+  },
+};
+
+export const reducedWordVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.01 } },
+};

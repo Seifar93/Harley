@@ -1,46 +1,61 @@
 import { FadeInItem, FadeInSection } from "@/components/FadeInSection";
-import { PhoneIcon, StarIcon } from "@/components/icons";
+import { MailIcon, PhoneIcon } from "@/components/icons";
 import { footerGroups, site } from "@/content/site";
 
+/**
+ * Footer.
+ *
+ * The link columns are placeholders: they point at `#` because the pages they
+ * describe do not exist in this single-page build. They are here to size the
+ * footer honestly for the real site's information architecture — wire them to
+ * real routes, or cut the columns, before launch.
+ */
 export function SiteFooter({ index }: { index: number }) {
   return (
     <FadeInSection
       as="footer"
       index={index}
-      className="mt-auto border-t border-border bg-surface"
+      className="border-t border-border bg-background px-6 py-16"
     >
-      <div className="mx-auto w-full max-w-6xl px-6 py-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <FadeInItem>
-            <div className="flex items-center gap-2.5">
-              <StarIcon className="size-5 text-accent" />
-              <span className="font-display text-lg font-semibold tracking-wide text-foreground">
-                {site.name}
-              </span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {site.strapline} across {site.region}.
+            <p className="font-display text-2xl tracking-tight text-foreground">
+              {site.name}
             </p>
-            <a
-              href={site.phoneHref}
-              className="mt-5 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-soft"
-            >
-              <PhoneIcon className="size-4" />
-              {site.phoneDisplay}
-            </a>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {site.strapline}. Measured, made and fitted across {site.region}.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-2 text-sm">
+              <a
+                href={site.phoneHref}
+                className="inline-flex w-fit cursor-pointer items-center gap-2 text-foreground transition-colors duration-200 hover:text-accent"
+              >
+                <PhoneIcon className="size-4 text-accent" />
+                {site.phoneDisplay}
+              </a>
+              <a
+                href={site.emailHref}
+                className="inline-flex w-fit cursor-pointer items-center gap-2 text-foreground transition-colors duration-200 hover:text-accent"
+              >
+                <MailIcon className="size-4 text-accent" />
+                {site.email}
+              </a>
+            </div>
           </FadeInItem>
 
-          {footerGroups.map(({ title, links }) => (
-            <FadeInItem key={title}>
-              <h3 className="text-sm font-semibold tracking-wide text-foreground">
-                {title}
-              </h3>
-              <ul className="mt-5 space-y-3">
-                {links.map((link) => (
+          {footerGroups.map((group) => (
+            <FadeInItem key={group.title}>
+              <h2 className="eyebrow font-sans text-muted-foreground">
+                {group.title}
+              </h2>
+              <ul className="mt-5 flex flex-col gap-3">
+                {group.links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-accent"
+                      className="cursor-pointer text-sm text-foreground transition-colors duration-200 hover:text-accent"
                     >
                       {link}
                     </a>
@@ -52,9 +67,13 @@ export function SiteFooter({ index }: { index: number }) {
         </div>
 
         <FadeInItem>
-          <p className="mt-14 border-t border-border pt-8 text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
+          <div className="mt-14 flex flex-col gap-3 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} {site.name}. Concept redesign —
+              placeholder content.
+            </p>
+            <p>Child safety compliant to BS EN 13120.</p>
+          </div>
         </FadeInItem>
       </div>
     </FadeInSection>

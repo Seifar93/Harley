@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Cormorant, Montserrat } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 /** Display/body pairing recommended by the ui-ux-pro-max typography database. */
-const cormorant = Cormorant({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Star Executive Travel — Luxury Car Hire & Chauffeur Services",
+  title: "Bespoke Blinds — Made-to-Measure Blinds, Shutters & Curtains",
   description:
-    "Chauffeur-driven executive travel, wedding cars, and self-drive luxury hire across Bradford and West Yorkshire. Fixed quotes, freephone booking.",
+    "Made-to-measure blinds, plantation shutters, curtains and motorised systems. Free home measure, made in the UK, fitted by the people who measured.",
 };
 
 export default function RootLayout({
@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${cormorant.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="grain flex min-h-full flex-col">{children}</body>
     </html>
   );
 }
