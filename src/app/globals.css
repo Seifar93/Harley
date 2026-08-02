@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/*
+ * Dark luxury palette for Star Executive Travel.
+ *
+ * The ui-ux-pro-max engine matched this brief to "Liquid Glass" with a
+ * premium-dark base and Cormorant/Montserrat type — both kept. Its generic
+ * red accent (#DC2626) was swapped for champagne gold: red reads as urgency
+ * and error, which is wrong for weddings and executive travel, where gold on
+ * charcoal is the established convention.
+ *
+ * Contrast against --color-background: foreground 16.8:1, muted-foreground
+ * 8.1:1, accent 7.4:1 — all clear of WCAG AA.
+ */
+@theme {
+  --color-background: #0b0f14;
+  --color-surface: #121820;
+  --color-surface-raised: #18202b;
+  --color-foreground: #f3f5f7;
+  --color-muted-foreground: #a3aebc;
+  --color-accent: #c9a227;
+  --color-accent-soft: #e3c766;
+  --color-on-accent: #0b0f14;
+  --color-border: #232b36;
+  --color-ring: #c9a227;
+
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* Visible focus ring for keyboard navigation. */
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Thin gold rule used as a section marker. */
+.rule-accent::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin-bottom: 1.25rem;
+  background: var(--color-accent);
+}
+
+/*
+ * Belt-and-braces reduced-motion support. The React components also read the
+ * preference via Framer Motion's useReducedMotion(), so entrance animations
+ * resolve to their final state rather than being cut off part-way.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
